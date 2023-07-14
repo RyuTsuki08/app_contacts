@@ -1,0 +1,29 @@
+{% extends 'main.html' %}
+
+{% block sign_in %}
+
+<div class="container">
+
+    {% csrf_token %}
+
+    <form method="POST">
+        <div class="mb-3 row">
+            <label for="inputName" class="col-4 col-form-label">Username</label>
+            <div class="col-8">
+                <input type="text" class="form-control" name="username" id="inputName" placeholder="Username">
+            </div>
+        </div>
+        <fieldset class="mb-3 row">
+            <legend class="col-form-legend col-4">Password</legend>
+            <div class="col-8">
+                <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+            </div>
+        </fieldset>
+        <div class="mb-3 row">
+            <div class="offset-sm-4 col-sm-8">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock sign_in %}

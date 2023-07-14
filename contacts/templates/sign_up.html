@@ -1,43 +1,39 @@
-<h1>WELCOME!</h1>
+{% extends 'main.html' %}
 
+
+{% block body %}
+
+
+{% if error %}
+<div class="alert alert-primary" role="alert">
+    <strong>{{error}}</strong> 
+</div>
+{% endif %}
 
 <form method="POST">
 
     {% csrf_token %}
 
-    {{error}}
+    <div class="mb-3">
+        <label  class="form-label">Username</label>
+        <input type="text" name="username" autocapitalize="none" autocomplete="username" autofocus="" required="" id="id_username">
+      </div>
+    <div class="mb-3">
+      <label  class="form-label">Email address</label>
+      <input type="text" name="email" autocapitalize="none" autocomplete="email" autofocus="" required="" id="id_email">
+      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+    <div class="mb-3">
+      <label  class="form-label">Password</label>
+      <input type="password" name="password1" autocomplete="new-password" required="" id="id_password1">
+    </div>
+    <div class="mb-3">
+        <label  class="form-label">Repeat your password</label>
+        <input type="password" name="password2" autocomplete="new-password" required="" id="id_password2">
+      </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
 
-    <label for="id_username">Username:</label>
-         
-    <input type="text" name="username" maxlength="150" autocapitalize="none" autocomplete="username" autofocus="" required="" id="id_username">
-    
-      <br>
-      <span class="helptext">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</span>
 
-      <br>
 
-      <label>Email</label>
-
-      <input type="text" name="email" maxlength="150" autocapitalize="none" autocomplete="email" autofocus="" required="" id="id_email">
-
-      <br>
-      <br>
-    
-    <label for="id_password1">Password:</label>
-    
-    <input type="password" name="password1" autocomplete="new-password" required="" id="id_password1">
-    
-      <br>
-      <span class="helptext"><ul><li>Your password can’t be too similar to your other personal information.</li><li>Your password must contain at least 8 characters.</li><li>Your password can’t be a commonly used password.</li><li>Your password can’t be entirely numeric.</li></ul></span>
-
-    <label for="id_password2">Password confirmation:</label>
-  
-    <input type="password" name="password2" autocomplete="new-password" required="" id="id_password2">
-    
-      <br>
-      <span class="helptext">Enter the same password as before, for verification.</span>
-    
-<button>
-    SIGN UP!
-</button>
-</form>
+{% endblock body %}

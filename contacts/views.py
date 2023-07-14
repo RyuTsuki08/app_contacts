@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 # Create your views here.
 
 def main(request):
-    return render(request, 'contacts.html')
+    return render(request, 'main.html')
 
 
 def sign_up(request):
@@ -22,18 +22,29 @@ def sign_up(request):
                 password = request.POST['password1']
                 user = User.objects.create_user(username=username, email=email, password=password)
                 user.save()
-                return HttpResponse('User created!')
+                return redirect('contacts')
             except:
                 return render(request, 'sign_up.html', {
-                'form': UserCreationForm,
-                'message':'Username or Email already exists'
+                'error':'Username or Email already exists'
                 })
         else:
               return render(request, 'sign_up.html', {
-                  'form': UserCreationForm,
-                'message':'Password do not match'
+                'error':'Password do not match'
                 })
+        
+
+def sign_in(request):
+
+    if request.method == 'POST':
+        print(request.POST)
+       # User.check() 
+    else:
+        print('nothig to do')
+
+    return render(request, 'login.html', {
+        "next": "/contacts" # Redirect to dashboard after login,
+    })
 
 
 def contacts(request):
-    return HttpResponse('CONTACTOS')
+    return render(request, 'contacts.html')

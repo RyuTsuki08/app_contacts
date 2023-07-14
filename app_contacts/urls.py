@@ -21,6 +21,7 @@ from contacts import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('sign-up/', views.sign_up),
+    path('sign-in/', views.sign_in),
     path('', views.main),
-    path('contactos/', views.contacts),
+    path('contacts/', views.contacts),
 ]
