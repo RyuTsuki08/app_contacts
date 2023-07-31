@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from django.contrib.auth.forms import UserCreationForm
+from django.http import HttpResponse, HttpResponseServerError
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
+from django.contrib.auth import login, authenticate
 
 
 # Create your views here.
@@ -20,30 +21,42 @@ def sign_up(request):
                 username = request.POST['username']
                 email = request.POST['email']
                 password = request.POST['password1']
-                user = User.objects.create_user(username=username, email=email, password=password)
+                user = User.objects.create_user(username, email, password)
+                print(user)
                 user.save()
-                return redirect('contacts')
-            except:
+                return redirect('sign-in')
+            except :
                 return render(request, 'sign_up.html', {
                 'error':'Username or Email already exists'
                 })
-        else:
-              return render(request, 'sign_up.html', {
-                'error':'Password do not match'
-                })
+        return render(request, 'sign_up.html', {
+            'error':'Password do not match'
+            })
         
 
 def sign_in(request):
-
-    if request.method == 'POST':
-        print(request.POST)
-       # User.check() 
+    if request.method == 'GET':
+        return render(request, 'login.html')    
     else:
-        print('nothig to do')
+        try:
+            username = request.POST['username']
+            password = request.POST['password']
 
-    return render(request, 'login.html', {
-        "next": "/contacts" # Redirect to dashboard after login,
-    })
+            user = authenticate(request, username=username, password=password)
+
+            if user is None:
+                return render(request, 'login.html', {
+                "error ": "Invalid credentials"
+            })
+            else:
+                login(request, user)
+                return redirect('contacts')
+        except:
+            return render(request, 'login.html', {
+                "error ": "Invalid credentials"
+            })
+
+
 
 
 def contacts(request):

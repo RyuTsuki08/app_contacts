@@ -51,6 +51,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+    'allauth.socialaccount.providers.google.auth.GoogleOAuth2Adapter',
+]
+
 ROOT_URLCONF = 'app_contacts.urls'
 
 TEMPLATES = [
@@ -100,6 +106,20 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+REST_AUTH_REGISTER_SERIALIZERS = {
+    'REGISTER_SERIALIZER': 'path.to.your.RegisterSerializer',
+}
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'APP': {
+            'client_id': '"878330776487-vh7thtuatpbdoj00jn6mh80q01lo7usu.apps.googleusercontent.com',
+            'secret': 'AIzaSyBHHYCVWIhZB100L2QuChWA9DVOqCKMsCU',
+            'key': 'AIzaSyBHHYCVWIhZB100L2QuChWA9DVOqCKMsCU'
+        }
+    }
+}
 
 
 # Internationalization

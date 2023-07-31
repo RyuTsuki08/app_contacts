@@ -2,11 +2,17 @@
 
 {% block sign_in %}
 
+
+{% if error %}
+<div class="alert alert-primary" role="alert">
+<strong>{{error}}</strong> 
+</div>
+{% endif %}
+
 <div class="container">
 
-    {% csrf_token %}
-
     <form method="POST">
+        {%csrf_token%}
         <div class="mb-3 row">
             <label for="inputName" class="col-4 col-form-label">Username</label>
             <div class="col-8">

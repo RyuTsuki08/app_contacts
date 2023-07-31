@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "878330776487",
+    "project_id": "supple-hulling-328302",
+    "storage_bucket": "supple-hulling-328302.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:878330776487:android:caeaa1b3cb6a3b9bca8482",
+        "android_client_info": {
+          "package_name": "com.example.tomas_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "878330776487-vh7thtuatpbdoj00jn6mh80q01lo7usu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHHYCVWIhZB100L2QuChWA9DVOqCKMsCU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "878330776487-vh7thtuatpbdoj00jn6mh80q01lo7usu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
